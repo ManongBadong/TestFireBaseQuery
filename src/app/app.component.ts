@@ -13,7 +13,7 @@ export class AppComponent implements OnInit  {
   ngOnInit() {}
 
   onCreatePost(postData: { title: string; content: string }) {
-    this.http.post("", postData).subscribe(
+    this.http.post("https://badongrecipe-default-rtdb.asia-southeast1.firebasedatabase.app/post.json", postData).subscribe(
       (responseData => {
         console.log(responseData);
       })
