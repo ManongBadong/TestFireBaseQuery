@@ -21,7 +21,11 @@ export class AppComponent implements OnInit  {
   }
 
   onCreatePost(postData: { title: string; content: string }) {
-    console.log(postData);
+    this.http.post("https://badongrecipe-default-rtdb.asia-southeast1.firebasedatabase.app/post.json", postData).subscribe(
+      (responseData => {
+        console.log(responseData);
+      })
+    );
   }
 
   test12() {
