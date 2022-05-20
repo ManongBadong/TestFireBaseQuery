@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'my-app',
@@ -13,14 +13,15 @@ export class AppComponent implements OnInit  {
 
   constructor(private http: HttpClient) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.formGroup = new FormGroup({
+      title: new FormControl(null),
+      content: new FormControl(null)
+    });
+  }
 
   onCreatePost(postData: { title: string; content: string }) {
-    this.http.post("https://badongrecipe-default-rtdb.asia-southeast1.firebasedatabase.app/post.json", postData).subscribe(
-      (responseData => {
-        console.log(responseData);
-      })
-    )
+    console.log(this.formGroup);
   }
 
   test12() {
