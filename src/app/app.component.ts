@@ -21,7 +21,7 @@ export class AppComponent implements OnInit  {
   }
 
   onCreatePost(postData: { title: string; content: string }) {
-    console.log(this.formGroup);
+    console.log(postData);
   }
 
   test12() {
