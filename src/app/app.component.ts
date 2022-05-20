@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'my-app',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: [ './app.component.css' ]
 })
 export class AppComponent implements OnInit  {
+
+  formGroup: FormGroup
 
   constructor(private http: HttpClient) {}
 
