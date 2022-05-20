@@ -13,7 +13,11 @@ export class AppComponent implements OnInit  {
   ngOnInit() {}
 
   onCreatePost(postData: { title: string; content: string }) {
-    
+    this.http.post("", postData).subscribe(
+      (responseData => {
+        console.log(responseData);
+      })
+    )
   }
 
 }
