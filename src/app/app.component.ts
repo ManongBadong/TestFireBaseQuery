@@ -9,7 +9,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class AppComponent implements OnInit  {
 
-  formGroup: FormGroup
+  formGroup!: FormGroup
 
   constructor(private http: HttpClient) {}
 
