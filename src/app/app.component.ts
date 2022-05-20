@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: [ './app.component.css' ]
 })
 export class AppComponent implements OnInit  {
-  
+
   constructor(private http: HttpClient) {}
 
   ngOnInit() {}
@@ -18,6 +18,10 @@ export class AppComponent implements OnInit  {
         console.log(responseData);
       })
     )
+  }
+
+  test12() {
+    
   }
 
 }
