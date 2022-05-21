@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { map } from 'rxjs/operators';
+import { Post } from './interface/post.model';
+import { PostService } from './service/posts.service';
 
 @Component({
   selector: 'my-app',
@@ -9,34 +12,37 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class AppComponent implements OnInit {
   formGroup!: FormGroup;
+  loadedPosts: Post[] = [];
+  isFetching: Boolean = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private postService: PostService) {}
 
   ngOnInit() {
     this.formGroup = new FormGroup({
       title: new FormControl(null),
       content: new FormControl(null),
     });
+
+    this.fetchPosts();
   }
 
-  onCreatePost(postData: { title: string; content: string }) {
-    this.http
-      .post(
-        'https://badongrecipe-default-rtdb.asia-southeast1.firebasedatabase.app/post.json',
-        postData
-      )
-      .subscribe((responseData) => {
-        console.log(responseData);
-      });
+  onCreatePost(postData: Post) {
+    this.postService.createAndStorePost(postData.title, postData.content);
+  }
+
+  onFetch() {
+    this.fetchPosts();
+  }
+
+  onClear() {
+    this.postService.deletePosts();
   }
 
   private fetchPosts() {
-    this.http
-      .get(
-        'https://badongrecipe-default-rtdb.asia-southeast1.firebasedatabase.app/post.json'
-      )
-      .subscribe((posts) => {
-        console.log(posts);
-      });
+    this.isFetching = true;
+    this.postService.fetchPosts().subscribe((responseData: Post[]) => {
+      this.loadedPosts = responseData;
+      this.isFetching = false;
+    });
   }
 }
