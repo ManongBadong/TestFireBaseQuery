@@ -11,7 +11,7 @@ import { PostService } from './service/posts.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  formGroup!: FormGroup;
+  formGroup: FormGroup;
   loadedPosts: Post[] = [];
   isFetching: Boolean = false;
   isError: boolean = false;
