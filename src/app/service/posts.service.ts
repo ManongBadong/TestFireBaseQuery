@@ -19,6 +19,9 @@ export class PostService {
   }
 
   fetchPosts() {
+    let searchParams = new HttpParams();
+    searchParams = searchParams.append('filter1','dog');
+    searchParams = searchParams.append('filter2','cat')
     return this.http
       .get<{ [key: string]: Post }>(
         'https://badongrecipe-default-rtdb.asia-southeast1.firebasedatabase.app/post.json',
@@ -26,7 +29,7 @@ export class PostService {
           headers: new HttpHeaders({
             'Custom-Header': 'Fuck you!',
           }),
-          params: new HttpParams().set('print', 'pretty'),
+          params: searchParams
         }
       )
       .pipe(
