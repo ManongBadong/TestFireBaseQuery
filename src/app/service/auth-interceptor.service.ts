@@ -10,5 +10,7 @@ export class AuthInterceptorService implements HttpInterceptor {
     });
     console.log(modifiedReq);
     return next.handle(modifiedReq);
+
+    // you can also use something to modify the response but better by careful. using .pipe .map . tap
   }
 }
